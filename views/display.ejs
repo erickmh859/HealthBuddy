@@ -1,0 +1,68 @@
+<!-- Different from handlebars, and ejs is easily to communicate with node.
+Cannot take main layout, so pass the layout for these page. -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HealthBuddy</title>
+	<link rel="stylesheet" href="/css/bootstrap.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+	<div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+              <li role="presentation"><a href="/">Assign</a></li>
+              <li role="presentation"><a href="/users/display">Display</a></li>
+              <li role="presentation"><a href="/users/logout">Logout</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">HealthBuddy</h3>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <h2 class="page-header">Display Elderly</h2>
+			<ul>
+					<h3>Name: <%= _cName %></h3> <!-- Ejs's ways to communicate with node -->
+					<h3>Phone Number: <%= _cPhone %></h3>
+					<h3>Location: </h3>
+					<iframe src='https://tools.onemap.sg/minimap/minimap.html?mWidth=440&mHeight=445&latLng=<%= _cLocation[_cLocation.length - 1].eLan %>,<%= _cLocation[_cLocation.length - 1].eLong %>&zoomLevl=17&iwt=<b>Current Location</b><br><img width="60px" height="60px" src="http://t1.onemap.sg/api/js/imap_small_logo.png"><br><br><a href="http://www.onemap.sg/">Onemap</a>&popupWidth=200&popupHeight=500&includePopup=true&onloadPopup=true&design=original' height=450px width=450px scrolling='no' frameborder='0'></iframe>
+					<table>
+    					<thead>
+    						<th>Address</th>
+    						<th>Postal</th>
+        					<th>Lantitude</th>
+        					<th>Longtitude</th>
+        					<th>Date</th>
+        					<th>Time</th>
+   						</thead>
+  						<tbody>     
+    						<% for(var i = _cLocation.length-1; i >= (_cLocation.length-5); i--) { %>                           
+  								<tr>
+  								<td><%= _cLocation[i].eAddress %></td>
+  								<td><%= _cLocation[i].ePostal %></td>
+            					<td><%= _cLocation[i].eLan %></td>
+            					<td><%= _cLocation[i].eLong %></td>
+            					<td><%= _cLocation[i].eTime %></td>
+            					<td><%= _cLocation[i].eDate %></td>
+  								</tr>
+         					<% } %>
+      					</tbody>
+					</table>
+			</ul>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; 2017 HealthBuddy, Inc.</p>
+      </footer>
+
+    </div> 
+</body>
+</html>
+    
+    
+		
+          
+    
+    
